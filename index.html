@@ -24,9 +24,8 @@
       <input id="title" class="form-control mr-sm-2" placeholder="Title" aria-label="Search">
       <button id="find" type="button" class="btn btn-success">Submit</button>
 
-      <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
-      </iframe>
-      <div class="card" style="width: 18rem;">
+      <div class="row">
+        <div class="card col-sm-6" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">Lyrics</h5>
             <p id="lyrics" class="card-text">None</p>
@@ -34,6 +33,11 @@
             <a href="#" class="card-link">Another link</a> -->
           </div>
         </div>
+
+        <div id="video" class="col-sm-6">
+        </div>
+      </div>
+
     </div>
     <table class="table table-sm table-dark">
         <thead>
@@ -54,12 +58,21 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <!-- Optional JavaScript -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/script.js"></script>
+
     <!-- Control Script -->
     <script>
-      $('#find').click(function() {
-        // console.log('masuk')
-        // console.log($('#artist').val())
+      $('#find').click(function(event) {
+        let artist = $('#artist').val()
+        let title = $('#title').val()
+        let find = artist + "+" + title
+
+        event.preventDefault()
         getLyrics($('#artist').val(), $('#title').val())
+        getVideo(find)
       })
       getTopChart()
     </script>
