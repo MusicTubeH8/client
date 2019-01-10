@@ -35,6 +35,18 @@
           </div>
         </div>
     </div>
+    <table class="table table-sm table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Pos</th>
+            <th scope="col">Artist</th>
+            <th scope="col">Title</th>
+          </tr>
+        </thead>
+        <tbody id="topchart">
+          
+        </tbody>
+      </table>
     <!-- Optional JavaScript -->
     <script src="/script.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -49,6 +61,7 @@
         // console.log($('#artist').val())
         getLyrics($('#artist').val(), $('#title').val())
       })
+      getTopChart()
     </script>
   </body>
 </html>
