@@ -24,7 +24,7 @@ function getTopChart() {
   let i = 0
   axios({
     method: 'GET',
-    url: 'http://localhost:3000/topchart'
+    url: 'http://localhost:3000/topcharts'
   })
   .then(({data}) =>  {
     data.track.forEach(track => {
