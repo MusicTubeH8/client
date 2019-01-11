@@ -11,7 +11,7 @@
   <body>
     <nav class="navbar navbar-light bg-light">
       <div class="container">
-          <a class="navbar-brand">Music Tube</a>
+          <img src="https://bcassetcdn.com/asset/logo/a7d1e2a2-f77a-4819-b819-3b230a2f3301/logo?v=3&text=MusicTube" alt="logo" style="margin-left:35%" >
           <form class="form-inline">
               <!-- <div id="g-signin" class="g-signin2" data-onsuccess="onSignIn"></div> -->
               <!-- <a id="g-signout" href="#" onclick="signOut();">Sign out</a> -->
@@ -19,38 +19,39 @@
       </div>    
     </nav>
     <div class="container">
-      <br><br><br>
+      <br>
       <input id="artist" class="form-control mr-sm-2" placeholder="Artist" aria-label="Search">
       <input id="title" class="form-control mr-sm-2" placeholder="Title" aria-label="Search">
       <button id="find" type="button" class="btn btn-success">Submit</button>
 
+      <br><br>
       <div class="row">
-        <div class="card col-sm-6" style="width: 18rem;">
+        <div class="card col-sm-7" style="width: 18rem;">
+          <div id="video">
+          </div>
           <div class="card-body">
             <h5 class="card-title">Lyrics</h5>
-            <p id="lyrics" class="card-text">None</p>
+            <p id="lyrics" class="card-text"></p>
             <!-- <a href="#" class="card-link">Card link</a>
             <a href="#" class="card-link">Another link</a> -->
           </div>
         </div>
-
-        <div id="video" class="col-sm-6">
+      
+        <div class="col-sm-5">
+          <table class="table table-sm table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Rank</th>
+                <th scope="col">Artist</th>
+                <th scope="col">Title</th>
+              </tr>
+            </thead>
+            <tbody id="topchart">
+            </tbody>
+          </table>
         </div>
       </div>
-
     </div>
-    <table class="table table-sm table-dark">
-        <thead>
-          <tr>
-            <th scope="col">Pos</th>
-            <th scope="col">Artist</th>
-            <th scope="col">Title</th>
-          </tr>
-        </thead>
-        <tbody id="topchart">
-          
-        </tbody>
-      </table>
     <!-- Optional JavaScript -->
     <script src="/script.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -66,13 +67,15 @@
     <!-- Control Script -->
     <script>
       $('#find').click(function(event) {
-        let artist = $('#artist').val()
-        let title = $('#title').val()
+        let artist = $('#artist').val().split(" ").join("+")
+        let title = $('#title').val().split(" ").join("+")
         let find = artist + "+" + title
 
         event.preventDefault()
         getLyrics($('#artist').val(), $('#title').val())
         getVideo(find)
+        $('#artist').val('');
+        $('#title').val('');
       })
       getTopChart()
     </script>

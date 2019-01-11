@@ -1,5 +1,4 @@
 function getLyrics(artist, title) {
-    console.log(artist, title)
     axios({
       method: 'POST', 
       url: 'http://localhost:3000/lyrics',
@@ -9,8 +8,11 @@ function getLyrics(artist, title) {
       }
     })
     .then(({ data }) => {
-      console.log(data);
-      $('#lyrics').html(data.lyrics);
+      $('#lyrics').html("")
+      let lyrics = data.lyrics.split("\n")
+      lyrics.forEach(item => {
+        $('#lyrics').append(`<p>${item}</p>`);
+      })
     })
     .catch((err) => {
       $('#lyrics').html("Lyric not found");
@@ -21,7 +23,7 @@ function getTopChart() {
   let i = 0
   axios({
     method: 'GET',
-    url: 'http://localhost:3000/topcharts'
+    url: 'http://localhost:3000/topchart'
   })
   .then(({data}) =>  {
     data.track.forEach(track => {
@@ -33,7 +35,6 @@ function getTopChart() {
           <td>${track.name}</td>
         </tr>`)
     })
-    console.log(data.track);
   })
   .catch(err => {
     console.log(err);
