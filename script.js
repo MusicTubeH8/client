@@ -13,7 +13,7 @@ function getLyrics(artist, title) {
       $('#lyrics').html(data.lyrics);
     })
     .catch((err) => {
-      console.log(err);
+      $('#lyrics').html("Lyric not found");
     })
 }
 
@@ -37,6 +37,24 @@ function getTopChart() {
   })
   .catch(err => {
     console.log(err);
-    
+  })
+}
+
+function getVideo(find) {
+  axios({
+    method: "GET",
+    url: `http://localhost:3000/youtube/${find}`
+  })
+  .then(response => {
+    response.data.items.forEach(element => {
+      $("#video").html(`<iframe id="existing-iframe-example"
+        width="640" height="360"
+        src="https://www.youtube.com/embed/${element.id.videoId}?enablejsapi=1"
+        frameborder="0"
+        style="border: solid 4px #37474F"></iframe>`)
+    });
+  })
+  .catch((err) => {
+    console.log(err);
   })
 }
