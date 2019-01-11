@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="google-signin-client_id" content="620789390155-ke3vj9p4s93hdqbijutnqf1a8bg5lokd.apps.googleusercontent.com">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>MusicTube</title>
@@ -13,30 +14,40 @@
       <div class="container">
           <img src="https://bcassetcdn.com/asset/logo/a7d1e2a2-f77a-4819-b819-3b230a2f3301/logo?v=3&text=MusicTube" alt="logo" style="margin-left:35%" >
           <form class="form-inline">
-              <!-- <div id="g-signin" class="g-signin2" data-onsuccess="onSignIn"></div> -->
-              <!-- <a id="g-signout" href="#" onclick="signOut();">Sign out</a> -->
+              <div id="g-signin" class="g-signin2" data-onsuccess="onSignIn"></div>
+              <a id="g-signout" href="#" onclick="signOut()">Sign out</a>
           </form>
       </div>    
     </nav>
-    <div class="container">
-      <br>
-      <input id="artist" class="form-control mr-sm-2" placeholder="Artist" aria-label="Search">
-      <input id="title" class="form-control mr-sm-2" placeholder="Title" aria-label="Search">
-      <button id="find" type="button" class="btn btn-success">Submit</button>
-
-      <br><br>
-      <div class="row">
-        <div class="card col-sm-7" style="width: 18rem;">
-          <div id="video">
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Lyrics</h5>
-            <p id="lyrics" class="card-text"></p>
-            <!-- <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a> -->
-          </div>
+  
+          
+    <div id="content" class="container">
+      <br><br><br>
+      <div class="row justify-content-center">
+        <div class="col-3">
+            <input id="artist" class="form-control mr-sm-2" placeholder="Artist" aria-label="Search">
         </div>
-      
+        <div class="col-3">
+            <input id="title" class="form-control mr-sm-2" placeholder="Title" aria-label="Search">
+        </div>
+        <div class="col-3">
+            <button id="find" type="button" class="btn btn-success">Submit</button>
+        </div>
+      </div><br><br>
+      <div class="row">
+        <div class="col-sm-7">
+            <div class="card" style="width: 18rem;">
+              <div id="video">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Lyrics</h5>
+                <p id="lyrics" class="card-text">None</p>
+                <!-- <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a> -->
+              </div>
+            </div>
+        </div>
+
         <div class="col-sm-5">
           <table class="table table-sm table-dark">
             <thead>
@@ -64,6 +75,8 @@
     <!-- Optional JavaScript -->
     <script src="/script.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- google sign in -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -85,7 +98,12 @@
         getVideo(find)
         $('#artist').val('');
         $('#title').val('');
+        getTopChart()
+        $('#artist').val() = ""
+        $('#title').val() = ""
+<<<<<<< HEAD
       })
+<<<<<<< HEAD
 
         
       $('#indonesia').click(() => {
@@ -99,6 +117,13 @@
       })
        getTopChart()
 
+=======
+      isLogin()
+>>>>>>> layout fixing
+=======
+      })
+      isLogin()
+>>>>>>> 253b55402187479e00de6cc3a6aea3cd320e41d5
     </script>
   </body>
 </html>
