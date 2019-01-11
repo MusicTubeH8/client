@@ -14,69 +14,57 @@
       <div class="container">
           <img src="https://bcassetcdn.com/asset/logo/a7d1e2a2-f77a-4819-b819-3b230a2f3301/logo?v=3&text=MusicTube" alt="logo" style="margin-left:35%" >
           <form class="form-inline">
-              <div id="g-signin" class="g-signin2" data-onsuccess="onSignIn"></div>
-              <a id="g-signout" href="#" onclick="signOut()">Sign out</a>
           </form>
       </div>    
     </nav>
-  
-          
+    <br><br><br><br><br>
+    <div class="row justify-content-center">
+        <div id="g-signin" class="g-signin2" data-onsuccess="onSignIn"></div>
+    </div>
     <div id="content" class="container">
-      <br><br><br>
-      <div class="row justify-content-center">
-        <div class="col-3">
+      <br>
+      <div>
+        <div class="row justify-content-center">
+          <div class="col-3">
             <input id="artist" class="form-control mr-sm-2" placeholder="Artist" aria-label="Search">
-        </div>
-        <div class="col-3">
+          </div>
+          <div class="col-3">
             <input id="title" class="form-control mr-sm-2" placeholder="Title" aria-label="Search">
-        </div>
-        <div class="col-3">
+          </div>
+          <div class="col-3">
             <button id="find" type="button" class="btn btn-success">Submit</button>
-        </div>
-      </div><br><br>
+          </div>
+          <a id="g-signout" href="#" onclick="signOut();">Sign out</a>
+          </div><br><br>
+      </div>
+      <br><br>
       <div class="row">
-        <div class="col-sm-7">
-            <div class="card" style="width: 18rem;">
-              <div id="video">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Lyrics</h5>
-                <p id="lyrics" class="card-text">None</p>
-                <!-- <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a> -->
-              </div>
-            </div>
+        <div class="card col-sm-7" style="width: 18rem;">
+          <div id="video">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Lyrics</h5>
+            <p id="lyrics" class="card-text"></p>
+            <!-- <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a> -->
+          </div>
         </div>
-
+      
         <div class="col-sm-5">
-          <table class="table table-sm table-dark">
-            <thead>
-              <tr>
-                <th scope="col">Rank</th>
-                <th scope="col">Artist</th>
-                <th scope="col">Title</th>
-              </tr>
-            </thead>
-            <!-- <tbody id="topchart">
-            </tbody> -->
-          </table>
+          <button type="button" class="btn btn-secondary btn-sm" id="global">Global Top 5 </button>
+          <button type="button" class="btn btn-secondary btn-sm" id="indonesia">Indonesia Top 5 </button>
+          <button type="button" class="btn btn-secondary btn-sm" id="uk">British Top 5 </button>
+          <div class="card" style="width: 18rem;">
+            <div id="topchart"></div>
+          </div>
         </div>
       </div>
     </div>
-    
-    <button type="button" class="btn btn-secondary btn-sm" id="global">Global Top 50 </button>
-    <button type="button" class="btn btn-secondary btn-sm" id="indonesia">Indonesia Top 50 </button>
-    <button type="button" class="btn btn-secondary btn-sm" id="uk">British Top 50 </button>
-      <div class="card" style="width: 18rem;">
-        <div id="topchart">
-
-        </div>
-      </div>
     <!-- Optional JavaScript -->
     <script src="/script.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <!-- google sign in -->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+     <!-- google sign in -->
+     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -88,23 +76,17 @@
 
     <!-- Control Script -->
     <script>
+      isLogin();
       $('#find').click(function(event) {
         let artist = $('#artist').val().split(" ").join("+")
         let title = $('#title').val().split(" ").join("+")
         let find = artist + "+" + title
-
         event.preventDefault()
         getLyrics($('#artist').val(), $('#title').val())
         getVideo(find)
         $('#artist').val('');
         $('#title').val('');
-        getTopChart()
-        $('#artist').val() = ""
-        $('#title').val() = ""
-
       })
-
-
         
       $('#indonesia').click(() => {
         getTopChartRegion('indonesia')
@@ -116,8 +98,6 @@
         getTopChartRegion('united kingdom')
       })
        getTopChart()
-      isLogin()
-
     </script>
   </body>
 </html>
