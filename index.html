@@ -52,6 +52,18 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
+=======
+    
+    <button type="button" class="btn btn-secondary btn-sm" id="global">Global Top 50 </button>
+    <button type="button" class="btn btn-secondary btn-sm" id="indonesia">Indonesia Top 50 </button>
+    <button type="button" class="btn btn-secondary btn-sm" id="uk">British Top 50 </button>
+      <div class="card" style="width: 18rem;">
+        <div id="topchart">
+
+        </div>
+      </div>
+>>>>>>> Change Table to card
     <!-- Optional JavaScript -->
     <script src="/script.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -72,12 +84,25 @@
         let find = artist + "+" + title
 
         event.preventDefault()
+      $('#indonesia').click(() => {
+        getTopChartRegion('indonesia')
+      })
+      $('#global').click(() => {
+        getTopChart()
+      })
+      $('#uk').click(() => {
+        getTopChartRegion('united kingdom')
+      })
+      $('#find').click(function() {
+        // console.log('masuk')
+        // console.log($('#artist').val())
         getLyrics($('#artist').val(), $('#title').val())
         getVideo(find)
         $('#artist').val('');
         $('#title').val('');
       })
-      getTopChart()
+       getTopChart()
+
     </script>
   </body>
 </html>
