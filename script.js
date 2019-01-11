@@ -134,5 +134,9 @@ function signOut() {
     console.log('User signed out.');
     localStorage.clear();
     isLogin();
+<<<<<<< HEAD
   }); 
+=======
+  });
+>>>>>>> 253b55402187479e00de6cc3a6aea3cd320e41d5
 }
