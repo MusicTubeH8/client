@@ -20,20 +20,51 @@ function getLyrics(artist, title) {
 }
 
 function getTopChart() {
+  $('#topchart').empty()
   let i = 0
   axios({
     method: 'GET',
-    url: 'http://localhost:3000/topchart'
+    url: 'http://localhost:3000/topcharts'
   })
   .then(({data}) =>  {
     data.track.forEach(track => {
       i++
-      $('#topchart').append(`
-        <tr>
-          <th scope="row">${i}</th>
-          <td>${track.artist.name}</td>
-          <td>${track.name}</td>
-        </tr>`)
+       $('#topchart').append(`
+          <img class="card-img-top" src="${track.image[2]["#text"]}" alt="Card image cap">
+          <div class="card-body">
+          <h5 class="card-title">  ${track.name} </h5>
+                <h6 class="card-subtitle mb-2 text-muted"><a href="${track.artist.url}">${track.artist.name}</a></h6>
+                <a href="${track.url}" class="card-link ml-5">View On Last FM</a>
+                <p class="card-text">Rank : ${i}</p>
+           </div>
+        `)
+    })
+    console.log(data.track);
+  })
+  .catch(err => {
+    console.log(err);
+  })
+}
+
+function getTopChartRegion(country) {
+  $('#topchart').empty()
+  let i = 0
+  axios({
+    method: 'GET',
+    url: `http://localhost:3000/topcharts/${country}`
+  })
+  .then(({data}) =>  {
+    data.track.forEach(track => {
+      i++
+       $('#topchart').append(`
+          <img class="card-img-top" src="${track.image[2]["#text"]}" alt="Card image cap">
+          <div class="card-body">
+          <h5 class="card-title">  ${track.name} </h5>
+                <h6 class="card-subtitle mb-2 text-muted"><a href="${track.artist.url}">${track.artist.name}</a></h6>
+                <a href="${track.url}" class="card-link ml-5">View On Last FM</a>
+                <p class="card-text">Rank : ${i}</p>
+           </div>
+        `)
     })
   })
   .catch(err => {
