@@ -48,24 +48,30 @@
             </div>
         </div>
 
-   
-      <div class="col-sm-5">
-          <button type="button" class="btn btn-secondary btn-sm" id="global">Global Top 5 </button>
-          <button type="button" class="btn btn-secondary btn-sm" id="indonesia">Indonesia Top 5 </button>
-          <button type="button" class="btn btn-secondary btn-sm" id="uk">British Top 5 </button>
-            <div class="card" style="width: 18rem;">
-                <div id="content">
-                  <div id="topchart">
-
-                </div>
-              </div>
-            </div>
-      </div>
-    <div id="page-selection"></div>
-      
+        <div class="col-sm-5">
+          <table class="table table-sm table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Rank</th>
+                <th scope="col">Artist</th>
+                <th scope="col">Title</th>
+              </tr>
+            </thead>
+            <!-- <tbody id="topchart">
+            </tbody> -->
+          </table>
+        </div>
       </div>
     </div>
     
+    <button type="button" class="btn btn-secondary btn-sm" id="global">Global Top 50 </button>
+    <button type="button" class="btn btn-secondary btn-sm" id="indonesia">Indonesia Top 50 </button>
+    <button type="button" class="btn btn-secondary btn-sm" id="uk">British Top 50 </button>
+      <div class="card" style="width: 18rem;">
+        <div id="topchart">
+
+        </div>
+      </div>
     <!-- Optional JavaScript -->
     <script src="/script.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -82,7 +88,6 @@
 
     <!-- Control Script -->
     <script>
-        getTopChart()
       $('#find').click(function(event) {
         let artist = $('#artist').val().split(" ").join("+")
         let title = $('#title').val().split(" ").join("+")
@@ -110,6 +115,7 @@
       $('#uk').click(() => {
         getTopChartRegion('united kingdom')
       })
+       getTopChart()
 
 =======
       isLogin()
