@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="google-signin-client_id" content="620789390155-ke3vj9p4s93hdqbijutnqf1a8bg5lokd.apps.googleusercontent.com">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>MusicTube</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container">
+          <img src="https://bcassetcdn.com/asset/logo/a7d1e2a2-f77a-4819-b819-3b230a2f3301/logo?v=3&text=MusicTube" alt="logo" style="margin-left:35%" >
+          <form class="form-inline">
+          </form>
+      </div>    
+    </nav>
+    <br><br><br><br><br>
+    <div class="row justify-content-center">
+        <div id="g-signin" class="g-signin2" data-onsuccess="onSignIn"></div>
+    </div>
+    <div id="content" class="container">
+      <br>
+      <div>
+        <div class="row justify-content-center">
+          <div class="col-3">
+            <input id="artist" class="form-control mr-sm-2" placeholder="Artist" aria-label="Search">
+          </div>
+          <div class="col-3">
+            <input id="title" class="form-control mr-sm-2" placeholder="Title" aria-label="Search">
+          </div>
+          <div class="col-3">
+            <button id="find" type="button" class="btn btn-success">Submit</button>
+          </div>
+          <a id="g-signout" href="#" onclick="signOut();">Sign out</a>
+          </div><br><br>
+      </div>
+      <br><br>
+      <div class="row">
+        <div class="card col-sm-7" style="width: 18rem;">
+          <div id="video">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Lyrics</h5>
+            <p id="lyrics" class="card-text"></p>
+            <!-- <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a> -->
+          </div>
+        </div>
+      
+        <div class="col-sm-5">
+          <button type="button" class="btn btn-secondary btn-sm" id="global">Global Top 5 </button>
+          <button type="button" class="btn btn-secondary btn-sm" id="indonesia">Indonesia Top 5 </button>
+          <button type="button" class="btn btn-secondary btn-sm" id="uk">British Top 5 </button>
+          <div class="card" style="width: 18rem;">
+            <div id="topchart"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <script src="/script.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+     <!-- google sign in -->
+     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Optional JavaScript -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/script.js"></script>
+
+    <!-- Control Script -->
+    <script>
+      isLogin();
+      $('#find').click(function(event) {
+        let artist = $('#artist').val().split(" ").join("+")
+        let title = $('#title').val().split(" ").join("+")
+        let find = artist + "+" + title
+        event.preventDefault()
+        getLyrics($('#artist').val(), $('#title').val())
+        getVideo(find)
+        $('#artist').val('');
+        $('#title').val('');
+      })
+        
+      $('#indonesia').click(() => {
+        getTopChartRegion('indonesia')
+      })
+      $('#global').click(() => {
+        getTopChart()
+      })
+      $('#uk').click(() => {
+        getTopChartRegion('united kingdom')
+      })
+       getTopChart()
+    </script>
+  </body>
+</html>
